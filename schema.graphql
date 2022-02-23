@@ -1,0 +1,86 @@
+type OpenThetaMarket @entity {
+  # factory address
+  id: ID!
+
+  # item info
+  itemCount: BigInt!
+
+  # total volume
+  totalVolumeTFUEL: BigDecimal!
+  totalFeeTFUEL: BigDecimal!
+
+  #commission:
+#  commissionRate: BigInt!
+
+  # total ticket info
+  totalNFTsSold: BigInt!
+  totalNFTsCanceled: BigInt!
+}
+
+type MarketItem @entity {
+  id: ID!
+
+  itemId: BigInt!
+
+  contract: Bytes!
+  project: NFTProject!
+  tokenId: BigInt!
+
+  seller: User!
+  buyer: User!
+
+
+  category: String!
+
+  price: BigInt!
+
+  isSold: Boolean!
+
+  # event creation stats
+  createdAtTimestamp: BigInt!
+  createdAtBlockNumber: BigInt!
+  soldAtTimestamp: BigInt
+  soldAtBlockNumber: BigInt
+}
+
+type NFTProject @entity {
+  id: ID!
+
+#  supply: BigInt!
+
+#  owners: Int!
+
+  # total volume
+  totalVolumeTFUEL: BigDecimal!
+
+#  floorPrice: BigInt!
+
+  totalNFTs: BigInt!
+
+  totalNFTsSold: BigInt!
+
+  totalNFTsCanceled: BigInt!
+
+  currentNFTsListed: BigInt!
+
+  items: [MarketItem!]! @derivedFrom(field: "project")
+}
+
+type User @entity {
+  id: ID!
+
+  address: Bytes!
+  # total earned
+  totalEarnedTFUEL: BigDecimal!
+  # total payed
+  totalPayedTFUEL: BigDecimal!
+
+  totalSoldNFTs: BigInt!
+
+  currentListedNFTs: BigInt!
+
+  totalBoughtNFTs: BigInt!
+
+  itemsBought: [MarketItem!]! @derivedFrom(field: "buyer")
+  items: [MarketItem!]! @derivedFrom(field: "seller")
+}

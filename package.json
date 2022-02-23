@@ -1,0 +1,27 @@
+{
+  "name": "opentheta-market-v2",
+  "version": "0.1.0",
+  "repository": "https://github.com/opentheta",
+  "license": "MIT",
+  "scripts": {
+    "create": "graph create opentheta-market-v2 --node https://api.thegraph.com/deploy/",
+    "create-local": "graph create opentheta-market-v2 --node http://127.0.0.1:8020",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy opentheta-market-v2 --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy-local": "graph deploy opentheta-market-v2 --ipfs https://$DOCKER_IPFS_USER:$DOCKER_IPFS_PASSWORD@$DOCKER_IPFS_HOST --node http://127.0.0.1:8020",
+    "deploy-local-ipfs": "graph deploy opentheta-market-v2 --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.22.1",
+    "@graphprotocol/graph-ts": "^0.22.1"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^1.5.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "truffle": "^5.0.4",
+    "truffle-contract": "^4.0.5",
+    "truffle-hdwallet-provider": "^1.0.4"
+  }
+}
